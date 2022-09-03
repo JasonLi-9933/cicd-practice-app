@@ -1,0 +1,11 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+# commands we run before running test suite
+before_install:
+  - docker build -t jasonli9933:cicd-practice-app -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true jasonli9933:cicd-practice-app npm run test
