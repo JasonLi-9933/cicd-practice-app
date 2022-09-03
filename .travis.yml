@@ -9,3 +9,15 @@ before_install:
 
 script:
   - docker run -e CI=true jasonli9933:cicd-practice-app npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ca-central-1"
+  app: "cicd-practice-app"
+  env: "Cicdpracticeapp-env"
+  bucket_name: "elasticbeanstalk-ca-central-1-789121287034"
+  bucket_path: "cicd-practice-app"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key: $AWS_SECRET_KEY
